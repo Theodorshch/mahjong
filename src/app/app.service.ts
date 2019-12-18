@@ -14,10 +14,26 @@ export class AppService {
 
   constructor() { }
 
+  isPrime(num) {
+    if (num < 2) {
+      return false;
+    }
+
+    for (let i = num - 1; i > 1; i--) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   initArray(min, max): number[] {
     const initialArray = [];
     for (let i = min; i <= max; i++) {
-      initialArray.push(i);
+      if (this.isPrime(i)) {
+        initialArray.push(i);
+      }
     }
     return initialArray;
   }
