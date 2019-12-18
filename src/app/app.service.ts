@@ -76,6 +76,12 @@ export class AppService {
 
   onCardClick(value, i) {
     this.cards = JSON.parse(JSON.stringify(this.cards));
+    if (this.firstNumber && this.firstNumber.i === i) {
+      this.firstNumber = null;
+      this.cards[i].isOpened = false;
+      this.cards$.next(this.cards);
+      return;
+    }
     this.cards[i].isOpened = true;
     this.cards$.next(this.cards);
     if (this.firstNumber) {
